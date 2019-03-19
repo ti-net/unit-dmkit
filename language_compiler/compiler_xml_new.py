@@ -95,7 +95,7 @@ class XmlParser(object):
                 value = cell.get('value') + '<'
                 value = self.__clean_span(value)
                 re_nlg = re.compile(r'BOT.*?<')
-                re_nlg_json = re.compile(r'BOT:{.*?<')
+                re_nlg_json = re.compile(r'BOT:{.*?}<')
                 re_params = re.compile(r'PARAM.*?<')
                 re_state = re.compile(r'STATE.*?<')
                 nlgs = []
@@ -105,6 +105,7 @@ class XmlParser(object):
                             n = self.__clean_noise(n[4:-1])
                             nlgs.append(n)
                     else:
+                       # value = value.replace("<br>", "")
                        for n in re_nlg_json.findall(value):
                             n = self.__clean_noise(n[4:-1])
                             nlgs.append(n)
